@@ -1,6 +1,6 @@
 javascript: var email = "<<Your Email>>",
-  id = "<<Your ID Number>>",
-  phone = "<<Yoru Ohine Number>>",
+  id = "<<Your Personal ID Number>>",
+  phone = "<<Yoru Phone Number>>",
   addr = "<<Your Address>>",
   name = "<<Your Name>>";
 document.getElementById("event_name").value = name;
