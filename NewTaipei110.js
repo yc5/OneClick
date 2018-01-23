@@ -1,4 +1,8 @@
-javascript: var email = "<<Your Email>>",
+javascript: 
+if (window.location.href != "https://tvrs.ntpd.gov.tw/#events/new") {
+  window.location.href = "https://tvrs.ntpd.gov.tw/#events/new";
+}else{
+var email = "<<Your Email>>",
   id = "<<Your Personal ID Number>>",
   phone = "<<Yoru Phone Number>>",
   addr = "<<Your Address>>",
@@ -26,3 +30,5 @@ if (regex.test(email)) {
   });
 } else {
   $(this).after('信箱格式錯誤');
+}
+}
