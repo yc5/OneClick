@@ -9,5 +9,9 @@ if(window.location.href.includes("loginControl")){
 		alert(err.message);
 	}
 }else{
-	window.location.href = "http://www.library.ntpc.gov.tw/loginControl/";
+	if(document.documentElement.innerText.indexOf("登出") != -1){
+		window.location.href = "http://webpac.tphcc.gov.tw/toread/opac/search";		
+	}else{
+		window.location.href = "http://www.library.ntpc.gov.tw/loginControl/";		
+	}
 }
