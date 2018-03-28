@@ -1,3 +1,5 @@
+//This script has been deprecated since 2018, owing to the update of YouBike login page.
+
 javascript:
 document.getElementById("login-phone").value = "<<Your ID>>";
 chkloginphone();
