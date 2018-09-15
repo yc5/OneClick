@@ -1,4 +1,4 @@
-var item = document.querySelectorAll(".NroHT");
+var item = document.querySelectorAll("[role=dialog]>div:nth-child(3)>ul>div>li");
 var list = "";
 for (var i = 0; i < item.length; i++) {
   list +=
