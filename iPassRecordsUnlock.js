@@ -13,7 +13,7 @@ javascript: (function() {
   R("mousedown");
   R("mouseup");
   R("selectstart");
-})()
+})();
 
 document.querySelectorAll("font").forEach(function(e) {
   e.outerHTML = "";
