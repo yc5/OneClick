@@ -15,6 +15,6 @@ javascript: (function() {
   R("selectstart");
 })();
 
-document.querySelectorAll("font").forEach(function(e) {
+document.querySelectorAll(".RandStr").forEach(function(e) {
   e.outerHTML = "";
 });
