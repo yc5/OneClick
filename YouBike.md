@@ -6,7 +6,12 @@ Example URL: https://taipei.youbike.com.tw/station/map
 ```js
 document.querySelector('#map-canvas>div').style='position: fixed; left: 0px; top: 0px; width: 100%; height: 100vh; z-index: 999;';
 ```
+## Fetch Records
+We found a built-in function to fetch ride records.
 
+```js
+getAjax(true, 'get', '/tw1/rideRecord', {card_no: "XXXXXXXXXXXXXXXX"},e=>{console.log(e)})
+```
 
 ## Login 2019
 In 2019 version, it supports multi accounts login.
