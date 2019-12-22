@@ -39,21 +39,25 @@ if(window.location.href.includes("/stu.aspx")) {
 https://courseselection.ntust.edu.tw/Account/Login
 ```js
 javascript: 
-var imgValiCode = document.getElementById('valiCode');
-var iValiCode = document.getElementById('VerifyCode');
-var theform = document.forms[0];
-theform[1].value = '<<Your ID>>'; 
-theform[2].value = '<<Your Password>>'; 
-imgValiCode.style = 'width:100%';
-iValiCode.autocomplete = 'off'; 
-iValiCode.style = 'font-size: 40px;text-transform: uppercase;';
-iValiCode.select(); 
-window.addEventListener("keyup", function() { 
-	if (iValiCode.value.length == 6) { 
-		theform[4].click(); 
-		theform[4].value = '登入中請稍候...';
-		theform[4].classList = 'btn btn-danger';
-		iValiCode.disabled = true;
-	} 
-});
+if (window.location.href.includes('Account/Login')) {
+    var imgValiCode = document.getElementById('valiCode');
+    var iValiCode = document.getElementById('VerifyCode');
+    var theform = document.forms[0];
+    theform[1].value = 'YOUR_ID';
+    theform[2].value = 'YOUR_PASSWORD';
+    imgValiCode.style = 'width:100%';
+    iValiCode.autocomplete = 'off';
+    iValiCode.style = 'font-size: 40px;text-transform: uppercase;';
+    iValiCode.select();
+    window.addEventListener("keyup", function() {
+        if (iValiCode.value.length == 6) {
+            theform[4].click();
+            theform[4].value = '%E7%99%BB%E5%85%A5%E4%B8%AD%E8%AB%8B%E7%A8%8D%E5%80%99...';
+            theform[4].classList = 'btn btn-danger';
+            iValiCode.disabled = true;
+        }
+    });
+} else {
+    window.location.href = 'https://courseselection.ntust.edu.tw/Account/Login';
+}
 ```
