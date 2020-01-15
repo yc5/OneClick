@@ -13,6 +13,18 @@ We found a built-in function to fetch ride records.
 getAjax(true, 'get', '/tw1/rideRecord', {card_no: "XXXXXXXXXXXXXXXX"},e=>{console.log(e)})
 ```
 
+## Stations List CSV
+Example URL: https://taipei.youbike.com.tw/station/2_list?5e0d9644bae27166af1d5903
+```js
+var row = "";
+document.querySelectorAll(".page").forEach(e=>{
+    var datas = e.querySelector("a").href.split("'");
+    row += datas[1] +","+ datas[3] +","+ decodeURI(datas[5]) +","+ decodeURI(datas[7])+"\n";
+    
+});
+console.log( row );
+```
+
 ## Login 2019
 In 2019 version, it supports multi accounts login.
 
