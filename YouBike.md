@@ -14,6 +14,8 @@ getAjax(true, 'get', '/tw1/rideRecord', {card_no: "XXXXXXXXXXXXXXXX"},e=>{consol
 ```
 
 ## Stations List CSV
+
+### #1 list
 Example URL: https://taipei.youbike.com.tw/station/2_list?5e0d9644bae27166af1d5903
 ```js
 var row = "";
@@ -23,6 +25,21 @@ document.querySelectorAll(".page").forEach(e=>{
     
 });
 console.log( row );
+```
+### #2 map
+Example URL: https://taipei.youbike.com.tw/station/2_map?5e0d965bbae27166a62a1993
+```js
+var row = "";
+temp1.retVal.forEach(e=>{
+    var count = 0;
+    for(var i in e){
+        row+=e[i];
+        if(Object.keys(e).length-1 > count){ row+=",";}
+        count++;
+    }
+    row+="\n";
+});
+console.log(row);
 ```
 
 ## Login 2019
