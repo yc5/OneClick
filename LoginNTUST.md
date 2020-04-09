@@ -61,3 +61,18 @@ if (window.location.href.includes('Account/Login')) {
     window.location.href = 'https://courseselection.ntust.edu.tw/Account/Login';
 }
 ```
+
+## 第三餐廳菜單抓取
+https://orderttu.azurewebsites.net
+```js
+out = ""
+DATA_URL = "https://orderttu.azurewebsites.net/api/api_product_list.php?rnd=1586428531788&currentPage=1&itemCount=30&fssel=88190819&stno=002&grpno=A05"
+fetch(DATA_URL)
+.then(r=>{return r.json()})
+.then(myjson=>{
+    myjson.data.forEach(e=>{
+        out += e.mernm + "\t" + e.pic1 + "\n"
+    })
+    console.log(out)
+})
+```
