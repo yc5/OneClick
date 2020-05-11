@@ -1,5 +1,25 @@
 # 一鍵登入臺灣科技大學 NTUST
 
+## 學生資訊系統202005
+https://studentpay.ntust.edu.tw/
+
+```js
+javascript: 
+var f = document.Form1;
+f.studentno.value = "STUDENT_ID";
+f.idcard.value = "ID_LAST_FOUR_DIGITS";
+f.DropMonth.value = "BIRTHDAY_MONTH_WITH_ZERO";
+f.DropDay.value = "BIRTHDAY_DAY_WITH_ZERO";
+f.password.value = "PASSWORD";
+f.code_box.select();
+f.code_box.addEventListener("keyup", function () {
+  if (this.value.length == 6) {
+    f.Button1.click();
+  }
+});
+
+```
+
 ## 學生資訊系統
 https://stuinfo8.ntust.edu.tw/ntust_stu/stu.aspx
 
