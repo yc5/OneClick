@@ -11,6 +11,7 @@ f.idcard.value = "ID_LAST_FOUR_DIGITS";
 f.DropMonth.value = "BIRTHDAY_MONTH_WITH_ZERO";
 f.DropDay.value = "BIRTHDAY_DAY_WITH_ZERO";
 f.password.value = "PASSWORD";
+f.code_box.autocomplete = "off";
 f.code_box.select();
 f.code_box.addEventListener("keyup", function () {
   if (this.value.length == 6) {
