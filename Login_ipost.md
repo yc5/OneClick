@@ -5,10 +5,17 @@ https://ipost.post.gov.tw
 ```js
 javascript:
 var scope = angular.element("[ng-controller=LoginController]").scope(); 
+scope.cif_id = "USER_CIF_ID";
 scope.userActNo = "USER_ACCOUNT_NUMBER";
 scope.userID = "USER_ID";
 scope.userPWD = "USER_PASSWORD";
 var login_type = 1;
+var login_type_other = login_type == 1 ? 2 : 1;
+
+$(".tab"+login_type_other+"_txt").removeClass("active");
+$(".tab"+login_type+"_txt").addClass("active");
+var _clickTab = $(".tab"+login_type+"_txt").find("a").attr("href");
+$(_clickTab).stop(false, true).fadeIn().siblings().hide();
 
 document.querySelectorAll(".codes_img>img")[login_type-1].style.height = "auto"; 
 document.querySelectorAll(".codes_img>img")[login_type-1].style.width = "322px"; 
