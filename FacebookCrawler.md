@@ -1,5 +1,21 @@
 # Facebook Frontend JavaScript Crawler
 
+## Backup Friend List
+
+```jsx
+output = ""
+
+document.querySelectorAll(".fsl").forEach(e=>{
+    profileUrl = e.querySelector("a").href
+    output += e.textContent
+    output += " / "
+    output += profileUrl.replace(/(&|\?)fref.+/,"").replace(/[^\?]+\/\/[^\?]+\//,"").replace("profile.php?id=","")
+    output += "\n"
+})
+
+console.log(output)
+```
+
 ## Backup Like List From a User
 
 ```jsx
