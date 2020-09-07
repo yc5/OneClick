@@ -64,3 +64,16 @@ if (window.location.href.indexOf("video") != -1) {
   alert("Sorry, this is not a Single Video page. Please navigate to a video page. You will see only one video at the page.");
 }
 ```
+
+
+## Remove Interests
+```jsx
+var i = 0;
+while (i<10) {
+    var father = document.querySelectorAll("._2b2e")[i];
+    father.querySelector("button").click();
+    console.log(i);
+    i++;    
+}
+```
+
