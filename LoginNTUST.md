@@ -97,3 +97,13 @@ fetch(DATA_URL)
     console.log(out)
 })
 ```
+
+
+## 校內文件管理系統
+```js
+var result = "";
+for(var i = 0; i < 4; i++){
+	result += document.querySelectorAll("img")[i].src.match(/\d/g);
+}
+console.log(result);
+```
