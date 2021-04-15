@@ -28,11 +28,11 @@ https://stuinfo8.ntust.edu.tw/ntust_stu/stu.aspx
 javascript:
 if(window.location.href.includes("/stu.aspx")) {
   var f = document.Form1;
-  f.studentno.value = "<<Your Student Mo>>";
-  f.idcard.value = "<<Your ID Last 4 Digits>>";
-  f.DropMonth.value = "<<Your Birthday Month with 0>>";
-  f.DropDay.value = "<<Your Birthday Day with 0>>";
-  f.password.value = "<<Your Password>>";
+  f.studentno.value = "YOUR_STUDENT_NO";
+  f.idcard.value = "YOUR_ID_LAST_4_DIGITS";
+  f.DropMonth.value = "YOUR_BIRTHDAY_MONTH_WITH_0";
+  f.DropDay.value = "YOUR_BIRTHDAY_DAY_WITH_0";
+  f.password.value = "YOUR_PASSWORD";
   f.code_box.select();
   f.code_box.addEventListener("keyup", function() {
     if (this.value.length == 6) {  	  
@@ -54,6 +54,16 @@ if(window.location.href.includes("/stu.aspx")) {
 }else {
   window.location.href = "https://stuinfo8.ntust.edu.tw/ntust_stu/stu.aspx";
 }
+```
+
+## 校園授權軟體
+```js
+javascript:
+document.getElementById('ctl00_ContentPlaceHolder1_txtStuID').value = 'STUDENT_ID';
+document.getElementById('ctl00_ContentPlaceHolder1_txtIdCard').value = 'FULL_ID';
+document.getElementById('ctl00_ContentPlaceHolder1_txtBirthday').value = 'BIRTHDAY_SIX_DIGITS';
+document.getElementById('ctl00_ContentPlaceHolder1_txtStuPwd').value = 'PASSWORD';
+document.getElementById('ctl00_ContentPlaceHolder1_Button01').click();
 ```
 
 ## 選課系統
