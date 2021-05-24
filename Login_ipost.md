@@ -2,6 +2,31 @@
 
 https://ipost.post.gov.tw
 
+2021
+
+```js
+javascript:
+var scope = angular.element("[ng-controller=LoginController]").scope();
+scope.cif_id = "USER_CIF_ID";
+scope.userActNo = "USER_ACCOUNT_NUMBER";
+scope.userID = "USER_ID";
+scope.userPWD = "USER_PASSWORD";
+
+var login_type = 1;
+
+document.querySelectorAll(".codes_img>img")[login_type - 1].style.height = "auto";
+document.querySelectorAll(".codes_img>img")[login_type - 1].style.width = "322px";
+document.querySelectorAll("input[name=captcha]")[login_type - 1].select();
+
+document.querySelectorAll("input[name=captcha]")[login_type - 1].addEventListener("keyup", function () {
+    if (this.value.length == 4) {
+        scope.loginCheck('1');
+    }
+});
+```
+
+2020
+
 ```js
 javascript:
 var scope = angular.element("[ng-controller=LoginController]").scope(); 
