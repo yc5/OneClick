@@ -1,20 +1,20 @@
 // Works at https://www.etax.nat.gov.tw/etw-main/web/ETW183W2_10701/
 
 javascript:
-var list = "";
-document.querySelectorAll(".number").forEach( function(element, index) {
-	list += element.textContent + "\t";
+var list = new Set();
+document.querySelectorAll(".etw-color-red").forEach( function(element, index) {
+	txt = element.textContent.slice(-3);
+	list.add(txt);
 });
-list = list.replace(/ /g, "");
-list = list.replace(/、/g, "\t");
-list = list.split("\t");
-var d = list.map( function(e) {
-	return e.slice(-3);
+array_list = Array.from(list);
+array_list.sort();
+
+output = "<table>";
+txt_year_month = document.querySelector(".etw-on").textContent.slice(0,10);
+array_list.forEach( function(element, index) {
+	output += "<tr><td>" + txt_year_month + "</td><td>" + element + "</td></tr>";
 });
-list = "";
-d.forEach( function(element, index) {
-	list += element + "<br>";
-});
-var myWindow = window.open("", "Fans List", "width=200,height=400");
-myWindow.document.write(list);
+output += "</table>";
+var myWindow = window.open("", "invoice List", "width=200,height=400");
+myWindow.document.write(output);
 myWindow.focus();
