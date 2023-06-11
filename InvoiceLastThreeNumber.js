@@ -1,6 +1,9 @@
 // Works at https://www.etax.nat.gov.tw/etw-main/web/ETW183W2_10701/
 
 javascript:
+if(window.location.hostname!="invoice.etax.nat.gov.tw"){
+	window.location.href="https://invoice.etax.nat.gov.tw";
+}
 var list = new Set();
 document.querySelectorAll(".etw-color-red").forEach( function(element, index) {
 	txt = element.textContent.slice(-3);
