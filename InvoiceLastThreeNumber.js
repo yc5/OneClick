@@ -12,7 +12,7 @@ array_list.sort();
 output = "<table>";
 txt_year_month = document.querySelector(".etw-on").textContent.slice(0,10);
 array_list.forEach( function(element, index) {
-	output += "<tr><td>" + txt_year_month + "</td><td>" + element + "</td></tr>";
+	output += "<tr><td>" + txt_year_month + "</td><td style='color: red;font-size: 3rem;font-weight: bold;'>" + element + "</td></tr>";
 });
 output += "</table>";
 var myWindow = window.open("", "invoice List", "width=200,height=400");
