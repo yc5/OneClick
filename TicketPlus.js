@@ -1,7 +1,23 @@
 javascript:
-var ticketsCount = 2;
+var ticketsCount = 1;
+
+var lenSoldout = document.querySelectorAll(".soldout").length;
+var lenChoices = document.querySelectorAll(".v-expansion-panel-header:not([class*=active])").length;
+if (lenSoldout === lenChoices) {
+    var d = new Date();
+    console.warn(`All Soldout at ${d.toLocaleTimeString()}`);
+    window.location.reload();
+}
+
 waitForElm("button.v-expansion-panel-header:not([class*=active]):not(:has(.soldout))").then(e => {
     e.click();
+    waitForElm(".v-expansion-panel-content__wrap").then(e => {
+        if (e.textContent.includes("開賣時間")) {
+            var d = new Date();
+            console.warn(`Not Started at ${d.toLocaleTimeString()}`);
+            window.location.reload();
+        }
+    });
 });
 waitForElm("button.v-btn.light-primary-2").then(e => {
     while (ticketsCount > 0) {
