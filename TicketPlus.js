@@ -11,7 +11,8 @@ if (lenSoldout === lenChoices) {
 
 waitForElm("button.v-expansion-panel-header:not([class*=active]):not(:has(.soldout))").then(e => {
     e.click();
-    waitForElm(".v-expansion-panel-content__wrap").then(e => {
+    waitForElm(".v-expansion-panel.v-expansion-panel--active.v-item--active [justify-self=end]").then(e => {
+        console.log(e.textContent);
         if (e.textContent.includes("開賣時間")) {
             var d = new Date();
             console.warn(`Not Started at ${d.toLocaleTimeString()}`);
