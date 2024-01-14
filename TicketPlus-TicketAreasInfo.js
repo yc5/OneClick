@@ -22,12 +22,20 @@ async function getavailableProducts() {
     if (ticketAreas.every(x => x.status === "pending")) {
         let d = new Date();
         console.warn(`Tickets Pending ${d.toLocaleTimeString()}`);
-        window.location.reload();
     } else if (ticketAreas.every(x => x.status === "soldout")) {
         let d = new Date();
         console.warn(`Tickets Soldout ${d.toLocaleTimeString()}`);
-        window.location.reload();
-
+    } else if (ticketAreas.some(x => !("count" in x))) {
+        ticketAreas = ticketAreas.filter(x => x.status === "unavailable");
+        ticketAreas = ticketAreas.map(x => {
+            let obj = {};
+            obj.ticketAreaName = x.ticketAreaName;
+            obj.price = x.price;
+            obj.status = "暫無票券";
+            return obj
+        });
+        console.log("All Count 0, Some TicketAreas Temp Unavailable");
+        console.table(ticketAreas);
     } else {
         ticketAreas = ticketAreas.filter(x => x.count > 0);
         ticketAreas = ticketAreas.map(x => {
@@ -37,8 +45,11 @@ async function getavailableProducts() {
             obj.count = x.count;
             return obj
         });
-        console.table(ticketAreas);
-
+        if (ticketAreas.length > 0) {
+            console.table(ticketAreas);
+        } else {
+            console.log("All TicketAreas Count 0");
+        }
     }
 }
 getavailableProducts();
