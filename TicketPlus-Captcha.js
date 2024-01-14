@@ -19,14 +19,18 @@ img.onload = function () {
   fetch("http://127.0.0.1:9898/ocr/b64/text", {
     method: "POST",
     body: pngDataURL.split("base64,")[1],
+    signal: AbortSignal.timeout(1000)
   })
     .then((res) => res.text())
-    .then((json) => {
-      console.log(json);
-      document.querySelector(".v-text-field__slot input").value = json;
+    .then((text) => {
+      console.log(text);
+      document.querySelector(".v-text-field__slot input").value = text;
       document
         .querySelector(".v-text-field__slot input")
         .dispatchEvent(new Event("input"));
       document.querySelector(".nextBtn").click();
+    }).catch(e => {
+      document.querySelector(".v-text-field__slot input").value = "ERR";
+      console.error(e);
     });
 };
