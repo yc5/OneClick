@@ -18,23 +18,23 @@ if (currentUrlMatch[0] === "activity") {
     var lenChoices = document.querySelectorAll(".v-expansion-panel-header:not([class*=active])").length;
     if (lenSoldout === lenChoices) {
         var d = new Date();
-        console.warn(`All Soldout at ${d.toLocaleTimeString()}`);
+        console.log(`All Soldout at ${d.toLocaleTimeString()}`);
         window.location.reload();
     }
 
     if (document.querySelectorAll(".v-dialog").length > 0) {
         var d = new Date();
-        console.warn(`Dialog at ${d.toLocaleTimeString()}`);
+        console.log(`Dialog at ${d.toLocaleTimeString()}`);
         window.location.reload();
     }
 
     waitForElm("button.v-expansion-panel-header:not([class*=active]):not(:has(.soldout))").then(e => {
         e.click();
-        waitForElm(".v-expansion-panel.v-expansion-panel--active.v-item--active [justify-self=end]").then(e => {
-            console.log(e.textContent);
+        waitForElm(".v-expansion-panel.v-expansion-panel--active.v-item--active").then(e => {
+            console.log(e.textContent.replace(/\s/gm, ""));
             if (e.textContent.includes("開賣時間")) {
                 var d = new Date();
-                console.warn(`Not Started at ${d.toLocaleTimeString()}`);
+                console.log(`Not Started at ${d.toLocaleTimeString()}`);
                 window.location.reload();
             }
         });
@@ -46,13 +46,46 @@ if (currentUrlMatch[0] === "activity") {
         }
     });
     window.scrollTo(0, document.body.scrollHeight);
+    resolveCaptcha();
+}
+async function resolveCaptcha() {
+    var svgElement = await waitForElm(".captcha-img svg");
+    var img = new Image();
+    img.src = "data:image/svg+xml;utf8," + encodeURIComponent(svgElement.outerHTML);
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
 
-    document.querySelector("input[placeholder=請輸入驗證碼]").select();
-    document.querySelector("input[placeholder=請輸入驗證碼]").addEventListener("keyup", e => {
-        if (e.target.value.length == 4) {
-            document.querySelector(".nextBtn").click();
-        }
-    });
+    img.onload = function () {
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+
+        var pngDataURL = canvas.toDataURL("image/png");
+        fetch("http://127.0.0.1:9898/ocr/b64/text", {
+            method: "POST",
+            body: pngDataURL.split("base64,")[1],
+            signal: AbortSignal.timeout(1000)
+        })
+            .then((res) => res.text())
+            .then((text) => {
+                console.log(text);
+                document.querySelector(".v-text-field__slot input").value = text;
+                document
+                    .querySelector(".v-text-field__slot input")
+                    .dispatchEvent(new Event("input"));
+                document.querySelector(".nextBtn").click();
+            }).catch(e => {
+                document.querySelector("input[placeholder=請輸入驗證碼]").select();
+                document.querySelector("input[placeholder=請輸入驗證碼]").addEventListener("keyup", e => {
+                    if (e.target.value.length == 4) {
+                        document.querySelector(".nextBtn").click();
+                    }
+                });
+            });
+    };
 }
 function waitForElm(selector) {
     return new Promise(resolve => {
