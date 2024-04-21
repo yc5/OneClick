@@ -9,10 +9,17 @@ URL: https://kktix.com/events/[EVENTID]/registrations/new
 - reCaptcha 可能不會彈出來
 
 ```jsx
-javascript:
-document.querySelectorAll(".btn-default.plus")[0].click();
-document.querySelector("#person_agree_terms").checked = true;
-document.querySelector("#person_agree_terms").dispatchEvent(new Event("click"));
-var actionBtnList = document.querySelectorAll(".btn.btn-primary.btn-lg");
-actionBtnList[actionBtnList.length-1].click();
+javascript: var plusBtnList = document.querySelectorAll(".btn-default.plus");
+if (plusBtnList.length == 0) {
+  window.location.reload();
+} else {
+  document.querySelectorAll(".btn-default.plus")[0].click();
+  document.querySelector("#person_agree_terms").checked = true;
+  document
+    .querySelector("#person_agree_terms")
+    .dispatchEvent(new Event("click"));
+  var actionBtnList = document.querySelectorAll(".btn.btn-primary.btn-lg");
+  actionBtnList[actionBtnList.length - 1].click();
+}
+
 ```
