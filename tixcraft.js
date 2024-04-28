@@ -1,7 +1,17 @@
 javascript:
 var currentUrlMatch = window.location.pathname.match(/[^\/]+/g);
 if (currentUrlMatch[0] === "activity") {
-    getEntryLink().then(link => window.location.href = link);
+    if (document.querySelectorAll(".buy").length > 0) {
+        getEntryLink().then(link => {
+            if (link) { window.location.href = link }
+            else { window.location.reload() }
+
+        });
+
+    } else {
+        window.location.reload()
+
+    }
 } else if (currentUrlMatch[0] === "ticket" && currentUrlMatch[1] === "area") {
     var itemList = document.querySelectorAll(".area-list li");
     var itemsToClickIndex = [];
@@ -40,7 +50,12 @@ async function getEntryLink() {
         }
     });
     const text = await response.text();
-    return [...text.matchAll(/data-href="([^"]+)"/mg)][0][1];
+    const matches = [...text.matchAll(/data-href="([^"]+)"/mg)];
+    if (matches.length > 0) {
+        return matches[0][1]
+    } else {
+        return undefined
+    }
 }
 
 function getCaptchaBase64String(imgElement) {
