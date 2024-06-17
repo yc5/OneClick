@@ -25,6 +25,11 @@ fetch("http://127.0.0.1:9898/ocr/b64/text", {
         birthdayInput.dispatchEvent(new Event("input"));
         birthdayInput.dispatchEvent(new Event("change"));
         submitButton.click();
+      })
+      .catch((err) => {
+        alert(
+          `Please enable "Disable Content-Security-Policy" and the captcha resolver, then refresh the page.`
+        );
     });
 ```
 
